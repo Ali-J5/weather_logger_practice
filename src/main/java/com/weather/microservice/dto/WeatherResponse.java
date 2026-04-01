@@ -1,14 +1,17 @@
 package com.weather.microservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 // DTO to catch the JSON response from the Open-Meteo API.
 public class WeatherResponse {
 
-    // Primitive fields matching the exact JSON keys for Jackson mapping.
+    // Primitive fields matching the JSON keys for Jackson mapping.
     private double latitude;
     private double longitude;
 
+    @JsonProperty("current_weather")
     // Custom object to catch the nested "current_weather" JSON block.
-    private CurrentWeather current_weather;
+    private CurrentWeather currentWeather;
 
     // Required Getters and Setters for Spring Boot/Jackson to populate the data.
 
@@ -29,11 +32,11 @@ public class WeatherResponse {
     }
 
     public CurrentWeather getCurrentWeather() {
-        return current_weather;
+        return currentWeather;
     }
 
-    public void setCurrentWeather(CurrentWeather current_weather) {
-        this.current_weather = current_weather;
+    public void setCurrentWeather(CurrentWeather currentWeather) {
+        this.currentWeather = currentWeather;
     }
 
     // Static nested class mirroring the tructure of the nested JSON object.
